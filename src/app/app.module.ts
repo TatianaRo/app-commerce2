@@ -9,8 +9,9 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 
 import { RouterModule } from '@angular/router'
-
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
 
 
 
@@ -30,6 +31,7 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './auth-guard.service';
 import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
       { path: 'admin/orders', component: AdminOrdersComponent},
     ]),
     NgbModule,
-    
+    FormsModule,
+    ReactiveFormsModule
+  
     
     
   ],

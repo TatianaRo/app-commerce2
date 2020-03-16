@@ -1,16 +1,24 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Product } from 'src/app/product.model';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore,
+              private db : AngularFireDatabase) { }
 
 
-getProducts() {
+  create(product){
+    return this.db.list('products').push(product);
+  }
+
+
+
+/* getProducts() {
   return this.firestore.collection('products').snapshotChanges();
 }
 
@@ -33,6 +41,6 @@ teste(product : Product){
   delete product.id;
   console.log(product);
 
-}
+} */
 
 }

@@ -14,7 +14,9 @@ export class ProductListComponent implements OnInit {
 
   constructor(private productService : ProductService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  /* ngOnInit(): void {
     this.productService.getProducts().subscribe(data =>{
       this.products = data
       
@@ -35,6 +37,6 @@ update(product : Product) {
 
 delete(id: string) {
   this.productService.deleteProduct(id);
-}
+} */
 
 }
