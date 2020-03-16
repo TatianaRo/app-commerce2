@@ -1,0 +1,32 @@
+[debug] [2020-03-12T17:09:17.973Z] ----------------------------------------------------------------------
+[debug] [2020-03-12T17:09:17.978Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\trodrigueso\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js --debug login
+[debug] [2020-03-12T17:09:17.979Z] CLI Version:   7.14.0
+[debug] [2020-03-12T17:09:17.980Z] Platform:      win32
+[debug] [2020-03-12T17:09:17.980Z] Node Version:  v12.15.0
+[debug] [2020-03-12T17:09:17.983Z] Time:          Thu Mar 12 2020 14:09:17 GMT-0300 (GMT-03:00)
+[debug] [2020-03-12T17:09:17.983Z] ----------------------------------------------------------------------
+[debug] [2020-03-12T17:09:17.986Z] 
+[info] i  Firebase optionally collects CLI usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you.
+
+[info] i  To change your data collection preference at any time, run `firebase logout` and log in again.
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=857944355&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2020-03-12T17:11:11.243Z] >>> HTTP REQUEST POST https://accounts.google.com/o/oauth2/token  
+
+[debug] [2020-03-12T17:11:32.259Z] Token Fetch Error: FirebaseError: Server Error. connect ETIMEDOUT 172.217.30.77:443
+    at Request._callback (C:\Users\trodrigueso\AppData\Roaming\npm\node_modules\firebase-tools\lib\api.js:30:31)
+    at self.callback (C:\Users\trodrigueso\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:185:22)
+    at Request.emit (events.js:223:5)
+    at Request.EventEmitter.emit (domain.js:475:20)
+    at Request.onRequestError (C:\Users\trodrigueso\AppData\Roaming\npm\node_modules\firebase-tools\node_modules\request\request.js:877:8)
+    at ClientRequest.emit (events.js:223:5)
+    at ClientRequest.EventEmitter.emit (domain.js:475:20)
+    at TLSSocket.socketErrorListener (_http_client.js:415:9)
+    at TLSSocket.emit (events.js:223:5)
+    at TLSSocket.EventEmitter.emit (domain.js:475:20)
+    at emitErrorNT (internal/streams/destroy.js:92:8)
+    at emitErrorAndCloseNT (internal/streams/destroy.js:60:3)
+    at processTicksAndRejections (internal/process/task_queues.js:81:21)

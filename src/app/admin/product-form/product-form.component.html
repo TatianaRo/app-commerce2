@@ -1,0 +1,31 @@
+<form class="mt-3">
+    <div class="form-group">
+        <label for="title" class="for">Title</label>
+        <input id="title" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="price" class="for">Price</label>
+        <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+            <input id="price" type="number" class="form-control">
+          </div>
+       
+    </div>
+    <div class="form-group">
+        <label for="category" class="for">Category</label>
+        <select id="category" type="" class="form-control">
+            <option value="" disabled>Choose your city</option>
+            <option *ngFor ='let category of categories$ | async' [value]="category.key">
+                {{ category.payload.val().name }}
+            </option>
+            
+        </select>   
+    </div>
+    <div class="form-group">
+        <label for="imageUrl" class="for">ImageUrl</label>
+        <input id="imageUrl" type="number" class="form-control">
+    </div>
+
+    <button class="btn btn-primary"> Save </button>
+
+</form>
