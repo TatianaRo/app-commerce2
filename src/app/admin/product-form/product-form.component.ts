@@ -1,9 +1,11 @@
+import { Router } from '@angular/router';
 import { CategoryService } from './../../category.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from 'src/app/product.service';
-import { CustomValidators } from 'ng2-validation';
+import { CustomValidators } from 'ngx-custom-validators';
+
 
 
 
@@ -19,9 +21,9 @@ export class ProductFormComponent implements OnInit {
   productForm = this.fb.group(
     {
       title: ['',Validators.required],
-      price: ['',Validators.required,CustomValidators.min(0)],
+      price: ['',[Validators.required, CustomValidators.min(0)]],
       category: ['',Validators.required],
-      imageUrl: ['',Validators.required]
+      imageUrl: ['',[Validators.required, CustomValidators.url]]
     }
   )
 
@@ -44,24 +46,24 @@ export class ProductFormComponent implements OnInit {
   save(product){
     console.log(product);
     this.productService.create(product);
+    this.router.navigate(['/admin/products']);
+    
   }
 
 
   getCategories(){
     this.categories$ = this.categoryService.getCategories();
-    console.log(this.categories$)
+    console.log(this.categories$);
+   
     
   }
   
-  constructor(private categoryService : CategoryService,
+  constructor(private router : Router,
+              private categoryService : CategoryService,
               private fb : FormBuilder,
               private productService : ProductService) {
 
   }
-
-  
-
-
 
    
   ngOnInit(): void {
