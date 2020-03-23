@@ -1,7 +1,6 @@
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Product } from 'src/app/product.model';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 @Injectable({
@@ -21,9 +20,20 @@ export class ProductService {
     return this.db.list('/products').snapshotChanges();}
 
   getProduct(productId){
-    return this.db.object('products/'+ productId);
+    return this.db.object('/products/'+ productId).valueChanges();
 
   }
+
+  update(productId, product){
+    return this.db.list('products').update(productId,product)
+    .catch ((error : any) => {console.log('Erro no update:'+ error)})
+  }
+
+  delete(productId){
+    return this.db.object('/products/'+ productId).remove();
+
+  }
+
  /* getProducts() {
   return this.firestore.collection('products').snapshotChanges();
 }

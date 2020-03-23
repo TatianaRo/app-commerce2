@@ -11,6 +11,15 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { RouterModule } from '@angular/router'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { MatTableModule } from '@angular/material/table';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
+ 
+
+
 
 
 
@@ -32,6 +41,7 @@ import { AuthGuardService } from './auth-guard.service';
 import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -56,7 +66,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AngularFirestoreModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent},
       { path: 'products', component: ProductsComponent},
       { path: 'shopping-cart', component: ShoppingCartComponent},
       { path: 'login', component: LoginComponent},
@@ -69,10 +78,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       { path: 'admin/products/:id', component: ProductFormComponent},
       { path: 'admin/products', component: AdminProductsComponent},
       { path: 'admin/orders', component: AdminOrdersComponent},
+
+      { path: '', component: HomeComponent},
     ]),
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatTableModule
+
+
+
+  
   
     
     

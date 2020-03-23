@@ -1,42 +1,88 @@
+import { MatSortModule, MatSort } from '@angular/material/sort';
 import { ProductService } from './../../product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { Subscription, Observable } from 'rxjs';
+import { Product } from 'src/app/product';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+
+
 
 @Component({
   selector: 'app-admin-products',
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
+export class AdminProductsComponent implements OnInit, OnDestroy {
   
-  products$;
-  product;
+  product : Product[];
+  filteredProducts : any[];
+  subscription : Subscription;
+  dataSource : any;
+
+  tableColumns  :  string[] = ['title', 'price','category','edit'] ;
+  
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
 
   constructor(private productService : ProductService,
               private route : ActivatedRoute,
      ) { 
-    //this.products = this.productService.getProducts();
 
-     let id = this.route.snapshot.paramMap.get('id');
-     if (id) this.productService.getProduct(id).
+    
+       
   }
+
+ 
+
+  query = new FormControl('');
+
+  applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();  
+  }
+
+  // filter(query : String){
+  //  this.filteredProducts = (query) ?
+  //  this.products.filter( p => p.title.toLowerCase().includes(query.toLowerCase())) :
+  //  this.products;
+  // }
+
+
+
   ngOnInit(): void {
 
-   //this.products$ = this.productService.getAll();}
-
-   this.productService.getAll().subscribe(data =>{
-    this.products$ = data
+    this.subscription = this.productService.getAll()
+    .subscribe(products => {
+      this.filteredProducts = this.product = products.map(
+        product => {
+          return <Product>{
+            title: product.payload.val()['title'],
+            category: product.payload.val()['category'],
+            imageUrl: product.payload.val()['imageUrl'],
+            price: product.payload.val()['price'],
+            key: product.key
+          }
+        }
+      )
+ 
+      this.dataSource = new MatTableDataSource(this.filteredProducts);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      
+    });
     
-    .map( e => {
-      return{key: e.payload.key, ...e.payload.val() as {} } ;
-    })
-  });
+ 
 }
 
  
 
+ ngOnDestroy(){
+ //this.subscription.unsubscribe();
 
+ }
 
 
 

@@ -1,6 +1,6 @@
-export class Product {
+export interface Product {
     
-    id : number;
+    key : string;
     title : String;
     price : number;
     category : String;

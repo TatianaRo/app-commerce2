@@ -1,10 +1,11 @@
-import { Router } from '@angular/router';
+import { ProductService } from './../../product.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CategoryService } from './../../category.service';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ProductService } from 'src/app/product.service';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CustomValidators } from 'ngx-custom-validators';
+import { take, map } from 'rxjs/operators';
 
 
 
@@ -17,15 +18,11 @@ import { CustomValidators } from 'ngx-custom-validators';
 export class ProductFormComponent implements OnInit {
 
   categories$;  
+  produto;
+  productForm : FormGroup;
+  id;
 
-  productForm = this.fb.group(
-    {
-      title: ['',Validators.required],
-      price: ['',[Validators.required, CustomValidators.min(0)]],
-      category: ['',Validators.required],
-      imageUrl: ['',[Validators.required, CustomValidators.url]]
-    }
-  )
+  
 
   get title(){
     return this.productForm.get('title');
@@ -44,21 +41,30 @@ export class ProductFormComponent implements OnInit {
   }
 
   save(product){
-    console.log(product);
-    this.productService.create(product);
+    if (this.id) {this.productService.update(this.id,product); console.log('update acionado')}
+    else {this.productService.create(product);}
     this.router.navigate(['/admin/products']);
+    
+  }
+
+  delete(){
+    if (!confirm('Are you sure want to delete this product?')) return;
+       this.productService.delete(this.id);
+       this.router.navigate(['/admin/products']);
     
   }
 
 
   getCategories(){
     this.categories$ = this.categoryService.getCategories();
-    console.log(this.categories$);
-   
-    
+    //console.log(this.categories$);
+       
   }
+
+  
   
   constructor(private router : Router,
+              private activatedRoute : ActivatedRoute,
               private categoryService : CategoryService,
               private fb : FormBuilder,
               private productService : ProductService) {
@@ -69,9 +75,27 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
 
     this.getCategories();
-    console.log(this.categories$);
-   
-        
-  }
 
-}
+    this.productForm = this.fb.group(
+      {
+        title: ['',Validators.required],
+        price: ['',[Validators.required, CustomValidators.min(0)]],
+        category: ['',Validators.required],
+        imageUrl: ['',[Validators.required, CustomValidators.url]]
+      }
+    )
+    
+     
+    this.activatedRoute.params.subscribe(
+      (rota)=>{
+        if (rota.id){
+        this.id = rota.id;
+        this.productService.getProduct(rota.id).pipe(take(1)).subscribe((p) => 
+          { this.produto = p;
+            this.productForm.patchValue(this.produto);})
+             
+      } } )
+     
+          } //Fim do ngOninit
+        
+        } // Fim do componente

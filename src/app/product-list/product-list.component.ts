@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
-import { Product } from 'src/app/product.model';
 import { map } from 'rxjs/operators'
 
 @Component({
@@ -10,7 +9,6 @@ import { map } from 'rxjs/operators'
 })
 export class ProductListComponent implements OnInit {
 
-  products : Product[];
 
   constructor(private productService : ProductService) { }
 
