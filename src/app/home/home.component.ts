@@ -1,8 +1,8 @@
-
 import { ProductService } from 'src/app/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -11,27 +11,9 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   
-  products$;
 
-  constructor(private productService : ProductService) { }
-
-  ngOnInit(): void {
-    this.productService.getAll()
-    .subscribe(data => this.products$ = data
-      .map(
-        product => {
-          return <Product>{
-            title: product.payload.val()['title'],
-            category: product.payload.val()['category'],
-            imageUrl: product.payload.val()['imageUrl'],
-            price: product.payload.val()['price'],
-            key: product.key
-          }
-        }
-      ) );
-
-  }
-
+  ngOnInit(){}
+ 
 
 
 }

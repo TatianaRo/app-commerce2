@@ -1,3 +1,4 @@
+import { OrderService } from './order.service';
 import { CategoryService } from './category.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -42,6 +43,10 @@ import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
+import { ProductQuantityComponent } from './product-quantity/product-quantity.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +62,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent,
+    ProductQuantityComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -66,12 +75,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AngularFirestoreModule,
     AngularFireAuthModule,
     RouterModule.forRoot([
-      { path: 'products', component: ProductsComponent},
+      
       { path: 'shopping-cart', component: ShoppingCartComponent},
       { path: 'login', component: LoginComponent},
 
       { path: 'check-out', component: CheckOutComponent},
-      { path: 'order-success', component: OrderSuccessComponent},
+      { path: 'order-success/:id', component: OrderSuccessComponent},
       { path: 'my/orders', component: MyOrdersComponent},
 
       { path: 'admin/products/new', component: ProductFormComponent},
@@ -79,7 +88,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: 'admin/products', component: AdminProductsComponent},
       { path: 'admin/orders', component: AdminOrdersComponent},
 
-      { path: '', component: HomeComponent},
+      { path: '', component: ProductsComponent},
     ]),
     NgbModule,
     FormsModule,
@@ -103,7 +112,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AuthService,
     AuthGuardService,
     UserService,
-    CategoryService
+    CategoryService,
+    ShoppingCartService,
+    OrderService
   ],
   bootstrap: [AppComponent]
 })

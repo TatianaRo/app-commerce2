@@ -56,7 +56,7 @@ export class ProductFormComponent implements OnInit {
 
 
   getCategories(){
-    this.categories$ = this.categoryService.getCategories();
+    this.categories$ = this.categoryService.getAll();
     //console.log(this.categories$);
        
   }

@@ -2,3 +2,7 @@
 .dropdown-toggle {
     cursor: pointer;
 }
+
+.dropdown-menu{
+    z-index: 10000;
+  }
