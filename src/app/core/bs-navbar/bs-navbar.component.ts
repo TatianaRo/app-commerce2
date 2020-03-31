@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'shared/services/auth.service';
 import { Observable } from 'rxjs';
 import { ShoppingCart } from 'shared/models/shopping-cart';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-bs-navbar',
@@ -11,6 +12,7 @@ import { ShoppingCart } from 'shared/models/shopping-cart';
 })
 export class BsNavbarComponent implements OnInit{
 
+  faCoffee = faCoffee;
     
     //shoppingCartItemCount : number;
     cart$: Observable<ShoppingCart>;

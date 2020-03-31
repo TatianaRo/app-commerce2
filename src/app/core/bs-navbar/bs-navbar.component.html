@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/">0</a>
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      <i class="fa fa-envira fa-1x">Products</i>
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,19 +12,23 @@
         
         <li class="nav-item">
           <a class="nav-link" routerLink="/shopping-cart">
-            shopping-cart
+            <i class="fa fa-shopping-cart fa-2x"></i>
             <span class="badge badge-warning badge-pill" *ngIf="cart$ | async as cart" >
               {{ cart.totalItemsCount  }}</span>
           </a>
-        </li>
-        <ng-template #anonymousUser>
+        </li>       
+      </ul>
+      <ul class="navbar-nav ">
+        
+      <ng-template #anonymousUser>
           <li  class="nav-item">
             <a class="nav-link" routerLink="/login">Login</a>
           </li>
         </ng-template>
         
         <li ngbDropdown *ngIf='auth.user$ | async as user ; else anonymousUser' class="nav-item dropdown" >
-          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" 
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             {{ user.displayName }}
           </a>
           <div ngbDropdownMenu class="dropdown-menu" >
@@ -30,8 +37,8 @@
             <a class="dropdown-item" routerLink='/admin/products'>Manage Products</a>
             <a class="dropdown-item" (click)='logout()' >Log Out</a>
           </div>
-        </li>
-        
+        </li>      
       </ul>
     </div>
+  </div>
   </nav>

@@ -1,3 +1,4 @@
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ProductCardComponent } from 'app/shared/components/product-card/product-card.component';
@@ -47,6 +48,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
+    
   ],
   exports: [
     ProductCardComponent,
@@ -65,6 +67,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
     MatFormFieldModule,
     MatTableModule,
     AngularFirestoreModule,
+    
   ],
 
   providers : [
