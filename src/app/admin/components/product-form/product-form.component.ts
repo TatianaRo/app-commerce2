@@ -93,7 +93,9 @@ export class ProductFormComponent implements OnInit {
           { this.produto = p;
             this.productForm.patchValue(this.produto);})
              
-      } } )
+      } 
+    
+      } )
      
           } //Fim do ngOninit
         
